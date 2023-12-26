@@ -58,6 +58,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "hasher-apis": "^0.2.7",
     "steno": "^3.1.1"
   },
   "devDependencies": {

@@ -24,22 +24,6 @@ db.write()
 }
 ```
 
-## Sponsors
-
-<br>
-<br>
-
-<p align="center">
-  <a href="https://mockend.com/" target="_blank">
-    <img src="https://jsonplaceholder.typicode.com/mockend.svg" height="70px">
-  </a>
-</p>
-
-<br>
-<br>
-
-[Become a sponsor and have your company logo here](https://github.com/sponsors/typicode) 👉 [GitHub Sponsors](https://github.com/sponsors/typicode)
-
 ## Features
 
 - **Lightweight**
@@ -225,6 +209,17 @@ db.data = { key: 'value' }
 ## Adapters
 
 ### Lowdb adapters
+
+#### `CJSONFile` `CJSONFileSync`
+
+Adapters for reading and writing JSON files.
+
+```js
+import { JSONFile, JSONFileSync } from 'lowdb/node'
+
+new Low(new CJSONFile(filename), {})
+new LowSync(new CJSONFileSync(filename), {})
+```
 
 #### `JSONFile` `JSONFileSync`
 
