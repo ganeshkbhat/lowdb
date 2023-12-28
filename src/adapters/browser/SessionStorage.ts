@@ -1,7 +1,7 @@
-import { WebStorage } from './WebStorage.js'
+import { WebStorage } from "./WebStorage.js";
 
 export class SessionStorage<T> extends WebStorage<T> {
   constructor(key: string) {
-    super(key, sessionStorage)
+    super(key, sessionStorage);
   }
 }

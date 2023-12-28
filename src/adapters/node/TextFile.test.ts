@@ -1,47 +1,50 @@
-import { deepStrictEqual as deepEqual, strictEqual as equal } from 'node:assert'
+import {
+  deepStrictEqual as deepEqual,
+  strictEqual as equal,
+} from "node:assert";
 
-import { temporaryFile } from 'tempy'
+import { temporaryFile } from "tempy";
 
-import { TextFile, TextFileSync } from './TextFile.js'
+import { TextFile, TextFileSync } from "./TextFile.js";
 
 export async function testTextFile(): Promise<void> {
-  const str = 'foo'
-  const file = new TextFile(temporaryFile())
+  const str = "foo";
+  const file = new TextFile(temporaryFile());
 
   // Null if file doesn't exist
-  equal(await file.read(), null)
+  equal(await file.read(), null);
 
   // Write
-  equal(await file.write(str), undefined)
+  equal(await file.write(str), undefined);
 
   // Read
-  deepEqual(await file.read(), str)
+  deepEqual(await file.read(), str);
 }
 
 export function testTextFileSync(): void {
-  const str = 'foo'
-  const file = new TextFileSync(temporaryFile())
+  const str = "foo";
+  const file = new TextFileSync(temporaryFile());
 
   // Null if file doesn't exist
-  equal(file.read(), null)
+  equal(file.read(), null);
 
   // Write
-  equal(file.write(str), undefined)
+  equal(file.write(str), undefined);
 
   // Read
-  deepEqual(file.read(), str)
+  deepEqual(file.read(), str);
 }
 
 export async function testRaceCondition(): Promise<void> {
-  const file = new TextFile(temporaryFile())
-  const promises: Promise<void>[] = []
+  const file = new TextFile(temporaryFile());
+  const promises: Promise<void>[] = [];
 
-  let i = 0
+  let i = 0;
   for (; i <= 100; i++) {
-    promises.push(file.write(String(i)))
+    promises.push(file.write(String(i)));
   }
 
-  await Promise.all(promises)
+  await Promise.all(promises);
 
-  equal(await file.read(), String(i - 1))
+  equal(await file.read(), String(i - 1));
 }

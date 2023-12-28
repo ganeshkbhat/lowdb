@@ -1,37 +1,40 @@
-import { deepStrictEqual as deepEqual, strictEqual as equal } from 'node:assert'
+import {
+  deepStrictEqual as deepEqual,
+  strictEqual as equal,
+} from "node:assert";
 
-import { temporaryFile } from 'tempy'
+import { temporaryFile } from "tempy";
 
-import { JSONFile, JSONFileSync } from './JSONFile.js'
+import { JSONFile, JSONFileSync } from "./JSONFile.js";
 
 type Data = {
-  a: number
-}
+  a: number;
+};
 
 export async function testJSONFile(): Promise<void> {
-  const obj = { a: 1 }
-  const file = new JSONFile<Data>(temporaryFile())
+  const obj = { a: 1 };
+  const file = new JSONFile<Data>(temporaryFile());
 
   // Null if file doesn't exist
-  equal(await file.read(), null)
+  equal(await file.read(), null);
 
   // Write
-  equal(await file.write(obj), undefined)
+  equal(await file.write(obj), undefined);
 
   // Read
-  deepEqual(await file.read(), obj)
+  deepEqual(await file.read(), obj);
 }
 
 export function testJSONFileSync(): void {
-  const obj = { a: 1 }
-  const file = new JSONFileSync<Data>(temporaryFile())
+  const obj = { a: 1 };
+  const file = new JSONFileSync<Data>(temporaryFile());
 
   // Null if file doesn't exist
-  equal(file.read(), null)
+  equal(file.read(), null);
 
   // Write
-  equal(file.write(obj), undefined)
+  equal(file.write(obj), undefined);
 
   // Read
-  deepEqual(file.read(), obj)
+  deepEqual(file.read(), obj);
 }

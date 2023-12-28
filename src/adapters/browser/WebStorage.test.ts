@@ -1,8 +1,11 @@
-import { deepStrictEqual as deepEqual, strictEqual as equal } from 'node:assert'
+import {
+  deepStrictEqual as deepEqual,
+  strictEqual as equal,
+} from "node:assert";
 
-import { WebStorage } from './WebStorage.js'
+import { WebStorage } from "./WebStorage.js";
 
-const storage: { [key: string]: string } = {}
+const storage: { [key: string]: string } = {};
 
 // Mock localStorage
 const mockStorage = () => ({
@@ -10,37 +13,37 @@ const mockStorage = () => ({
   setItem: (key: string, data: string) => (storage[key] = data),
   length: 1,
   removeItem() {
-    return
+    return;
   },
   clear() {
-    return
+    return;
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   key(_: number): string {
-    return ''
+    return "";
   },
-})
-global.localStorage = mockStorage()
-global.sessionStorage = mockStorage()
+});
+global.localStorage = mockStorage();
+global.sessionStorage = mockStorage();
 
 export function testLocalStorage(): void {
-  const obj = { a: 1 }
-  const storage = new WebStorage('key', localStorage)
+  const obj = { a: 1 };
+  const storage = new WebStorage("key", localStorage);
 
   // Write
-  equal(storage.write(obj), undefined)
+  equal(storage.write(obj), undefined);
 
   // Read
-  deepEqual(storage.read(), obj)
+  deepEqual(storage.read(), obj);
 }
 
 export function testSessionStorage(): void {
-  const obj = { a: 1 }
-  const storage = new WebStorage('key', sessionStorage)
+  const obj = { a: 1 };
+  const storage = new WebStorage("key", sessionStorage);
 
   // Write
-  equal(storage.write(obj), undefined)
+  equal(storage.write(obj), undefined);
 
   // Read
-  deepEqual(storage.read(), obj)
+  deepEqual(storage.read(), obj);
 }

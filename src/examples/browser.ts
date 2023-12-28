@@ -1,12 +1,12 @@
-import { LocalStoragePreset } from '../presets/browser.js'
+import { LocalStoragePreset } from "../presets/browser.js";
 
 type Data = {
-  messages: string[]
-}
+  messages: string[];
+};
 
-const defaultData: Data = { messages: [] }
-const db = LocalStoragePreset<Data>('db', defaultData)
+const defaultData: Data = { messages: [] };
+const db = LocalStoragePreset<Data>("db", defaultData);
 
-db.data.messages.push('foo')
+db.data.messages.push("foo");
 
-db.write()
+db.write();
