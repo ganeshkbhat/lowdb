@@ -5,7 +5,6 @@ import {
   verifySHA,
 } from "hasher-apis";
 
-
 export class Encrypt {
   encrypt(obj: T, salt: string): T {
     return encryptor(
